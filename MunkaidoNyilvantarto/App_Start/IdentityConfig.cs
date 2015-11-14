@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MunkaidoNyilvantarto.Models;
+using MunkaidoNyilvantarto.Data.Entity;
 
 namespace MunkaidoNyilvantarto
 {

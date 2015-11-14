@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -18,5 +19,20 @@ namespace MunkaidoNyilvantarto.Data.Entity
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<SpentTime> SpentTimes { get; set; }
+
+        /// <summary>
+        /// Azok a projektek ahol a felhasználó  felelős
+        /// </summary>
+        [InverseProperty("Responsible")]
+        public virtual ICollection<Project> ResponsibleProjects { get; set; }
+
+        /// <summary>
+        /// Azok a projektek ahol a felhasználó dolgozó
+        /// </summary>
+        [InverseProperty("Workers")]
+        public virtual ICollection<Project> WorkerProjects { get; set; }
+
     }
 }
