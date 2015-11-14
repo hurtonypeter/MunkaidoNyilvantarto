@@ -45,6 +45,7 @@
     <Compile Include="Issue\IssueEditViewModel.cs" />
     <Compile Include="Issue\IssueListViewModel.cs" />
     <Compile Include="Project\ProjectEditViewModel.cs" />
+    <Compile Include="Project\ProjectListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpentTime\SpentTimeEditViewModel.cs" />
     <Compile Include="SpentTime\SpentTimeListViewModel.cs" />
