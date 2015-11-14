@@ -38,5 +38,11 @@ namespace MunkaidoNyilvantarto.Data.Entity
         [Required]
         public string Title { get; set; }
 
+        /// <summary>
+        /// A feladat állapota
+        /// </summary>
+        [Required]
+        public IssueState State { get; set; }
+
     }
 }

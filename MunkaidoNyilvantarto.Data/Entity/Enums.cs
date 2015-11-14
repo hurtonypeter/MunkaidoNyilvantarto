@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace MunkaidoNyilvantarto.Data.Entity
 {
-    public enum RoleTypes
+    public enum RoleType
     {
-        Manager = 0,
-        Worker = 1
+        Manager,
+        Worker
+    }
+
+    public enum IssueState
+    {
+        New,
+        Inprogress,
+        Blocked,
+        Testing,
+        Ready
     }
 }

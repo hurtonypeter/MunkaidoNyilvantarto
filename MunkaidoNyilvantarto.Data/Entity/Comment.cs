@@ -28,5 +28,11 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// </summary>
         [Required]
         public string Body { get; set; }
+
+        /// <summary>
+        /// A felhasználó aki kommentelt
+        /// </summary>
+        [Required]
+        public virtual ApplicationUser User { get; set; }
     }
 }
