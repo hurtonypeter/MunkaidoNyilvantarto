@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IAnalyticsService.cs" />
+    <Compile Include="Contracts\ICommentService.cs" />
     <Compile Include="Contracts\IIssueService.cs" />
     <Compile Include="Contracts\IServiceResult.cs" />
     <Compile Include="Contracts\IProjectService.cs" />
