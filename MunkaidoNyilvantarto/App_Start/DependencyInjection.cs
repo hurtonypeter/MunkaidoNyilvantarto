@@ -39,7 +39,7 @@ namespace MunkaidoNyilvantarto.App_Start
             builder.Register<IDataProtectionProvider>(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // REGISTER CONTROLLERS SO DEPENDENCIES ARE CONSTRUCTOR INJECTED
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterControllers(typeof(MvcApplication).Assembly).PropertiesAutowired();
 
             //saját üzleti logikák
             builder.RegisterAssemblyTypes(Assembly.Load("MunkaidoNyilvantarto.BLL")).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
@@ -56,6 +56,10 @@ namespace MunkaidoNyilvantarto.App_Start
                     }
                 });
             builder.RegisterType<MappingEngine>().As<IMappingEngine>().SingleInstance();
+
+            // global filters
+            builder.Register(c => new HandleErrorAttribute()).AsExceptionFilterFor<Controller>().InstancePerRequest();
+            builder.RegisterFilterProvider();
 
             var container = builder.Build();
 

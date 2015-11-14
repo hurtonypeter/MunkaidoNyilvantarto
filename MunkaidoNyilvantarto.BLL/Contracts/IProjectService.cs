@@ -12,5 +12,7 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<IServiceResult> CreateProject(ProjectEditViewModel model);
 
         Task<IServiceResult> UpdateProject(ProjectEditViewModel model);
+
+        Task<List<ProjectListViewModel>> ListProjects();
     }
 }
