@@ -21,6 +21,23 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// A munkaidőhöz tartozó feladat
         /// </summary>
         [Required]
-        public virtual Task Task { get; set; }
+        public virtual Issue Issue { get; set; }
+
+        /// <summary>
+        /// Melyik nap dolgozott
+        /// </summary>
+        [Required]
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Mennyit dolgozott
+        /// </summary>
+        [Required]
+        public double Hour { get; set; }
+
+        /// <summary>
+        /// Megjegyzés
+        /// </summary>
+        public string Description { get; set; }
     }
 }

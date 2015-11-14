@@ -63,7 +63,7 @@
     <Compile Include="Entity\Enums.cs" />
     <Compile Include="Entity\Project.cs" />
     <Compile Include="Entity\SpentTime.cs" />
-    <Compile Include="Entity\Task.cs" />
+    <Compile Include="Entity\Issue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ApplicationRoleStore.cs" />
     <Compile Include="Repository\ApplicationUserStore.cs" />

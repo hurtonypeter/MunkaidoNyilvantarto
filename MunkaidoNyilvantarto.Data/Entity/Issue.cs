@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MunkaidoNyilvantarto.Data.Entity
 {
-    public class Task
+    public class Issue
     {
         public int Id { get; set; }
 
@@ -26,6 +26,17 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// A feladathoz tartozó kommentek
         /// </summary>
         public virtual ICollection<Comment> Comments { get; set; }
+
+        /// <summary>
+        /// A feladat leírása
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// A feladat neve
+        /// </summary>
+        [Required]
+        public string Title { get; set; }
 
     }
 }

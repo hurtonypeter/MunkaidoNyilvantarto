@@ -25,6 +25,24 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// <summary>
         /// A projekthez tartozó feladatok
         /// </summary>
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Issue> Issues { get; set; }
+
+        /// <summary>
+        /// A projekt neve
+        /// </summary>
+        [Required]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Projekt leírása
+        /// </summary>
+        [Required]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// A projekt lejárati ideje
+        /// </summary>
+        [Required]
+        public DateTime Deadline { get; set; }
     }
 }
