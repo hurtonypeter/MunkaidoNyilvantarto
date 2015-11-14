@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ViewModels")]
+[assembly: AssemblyTitle("MunkaidoNyilvantarto.ViewModels")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ViewModels")]
+[assembly: AssemblyProduct("MunkaidoNyilvantarto.ViewModels")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8d7272f1-b3e8-47d9-a4b0-8b976760e139")]
+[assembly: Guid("2ed06beb-e902-4a49-9a7b-f4234d1291ac")]
 
 // Version information for an assembly consists of the following four values:
 //

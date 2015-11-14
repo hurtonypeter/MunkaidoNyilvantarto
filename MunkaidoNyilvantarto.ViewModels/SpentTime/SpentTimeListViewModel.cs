@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace MunkaidoNyilvantarto.ViewModels.SpentTime
 {
-    public class Class1
+    public class SpentTimeListViewModel
     {
+        public int Id { get; set; }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
+using AutoMapper.Mappers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataProtection;
+using MunkaidoNyilvantarto.BLL;
 using MunkaidoNyilvantarto.BLL.Identity;
 using MunkaidoNyilvantarto.Data.Entity;
 using MunkaidoNyilvantarto.Data.Repository;
@@ -11,6 +14,7 @@ using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,6 +41,21 @@ namespace MunkaidoNyilvantarto.App_Start
             // REGISTER CONTROLLERS SO DEPENDENCIES ARE CONSTRUCTOR INJECTED
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
+            //saját üzleti logikák
+            builder.RegisterAssemblyTypes(Assembly.Load("MunkaidoNyilvantarto.BLL")).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
+
+            // AutoMapper config
+            builder.RegisterType<EntityMappingProfile>().As<Profile>();
+            builder.Register(ctx => new ConfigurationStore(new TypeMapFactory(), MapperRegistry.Mappers))
+                .AsImplementedInterfaces().SingleInstance()
+                .OnActivating(x =>
+                {
+                    foreach (var profile in x.Context.Resolve<IEnumerable<Profile>>())
+                    {
+                        x.Instance.AddProfile(profile);
+                    }
+                });
+            builder.RegisterType<MappingEngine>().As<IMappingEngine>().SingleInstance();
 
             var container = builder.Build();
 
