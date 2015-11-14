@@ -59,7 +59,11 @@
   <ItemGroup>
     <Compile Include="Entity\ApplicationDbContext.cs" />
     <Compile Include="Entity\ApplicationUser.cs" />
+    <Compile Include="Entity\Comment.cs" />
+    <Compile Include="Entity\Enums.cs" />
     <Compile Include="Entity\Project.cs" />
+    <Compile Include="Entity\SpentTime.cs" />
+    <Compile Include="Entity\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

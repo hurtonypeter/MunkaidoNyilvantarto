@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 
 namespace MunkaidoNyilvantarto.Data.Entity
 {
-    public class Project
+    public class Task
     {
         public int Id { get; set; }
 
         /// <summary>
-        /// A projektért felelős személy
+        /// A feladatra eltöltött munkaidők
+        /// </summary>
+        public virtual ICollection<SpentTime> SpentTimes { get; set; }
+
+        /// <summary>
+        /// A feladathoz tartozó projekt
         /// </summary>
         [Required]
-        public virtual ApplicationUser Responsible { get; set; }
+        public virtual Project Project { get; set; }
 
         /// <summary>
-        /// A projekten dologozó munkások
+        /// A feladathoz tartozó kommentek
         /// </summary>
-        public virtual ICollection<ApplicationUser> Workers { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        /// <summary>
-        /// A projekthez tartozó feladatok
-        /// </summary>
-        public virtual ICollection<Task> Tasks { get; set; }
     }
 }
