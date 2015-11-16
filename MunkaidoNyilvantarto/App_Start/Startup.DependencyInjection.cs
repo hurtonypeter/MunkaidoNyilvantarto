@@ -18,11 +18,11 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MunkaidoNyilvantarto.App_Start
+namespace MunkaidoNyilvantarto
 {
-    public static class DependencyInjection
+    public partial class Startup
     {
-        public static void Setup(IAppBuilder app)
+        public void ConfigureDI(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
 

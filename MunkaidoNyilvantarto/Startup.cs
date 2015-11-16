@@ -9,6 +9,7 @@ namespace MunkaidoNyilvantarto
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigureDI(app);
         }
     }
 }
