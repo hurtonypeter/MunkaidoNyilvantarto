@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataProtection;
 using MunkaidoNyilvantarto.BLL;
 using MunkaidoNyilvantarto.BLL.Identity;
+using MunkaidoNyilvantarto.Common.ErrorHandling;
 using MunkaidoNyilvantarto.Data.Entity;
 using MunkaidoNyilvantarto.Data.Repository;
 using Owin;
@@ -58,7 +59,7 @@ namespace MunkaidoNyilvantarto
             builder.RegisterType<MappingEngine>().As<IMappingEngine>().SingleInstance();
 
             // global filters
-            builder.Register(c => new HandleErrorAttribute()).AsExceptionFilterFor<Controller>().InstancePerRequest();
+            builder.Register(c => new JsonHandleErrorAttribute()).AsExceptionFilterFor<Controller>().InstancePerRequest();
             builder.RegisterFilterProvider();
 
             var container = builder.Build();
