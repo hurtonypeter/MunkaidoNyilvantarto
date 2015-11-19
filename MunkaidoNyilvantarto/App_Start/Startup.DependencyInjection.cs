@@ -31,8 +31,8 @@ namespace MunkaidoNyilvantarto
             builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
 
             // ASP.NET Identity
-            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            builder.RegisterType<ApplicationRoleStore>().As<IRoleStore<IdentityRole>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserStore>().AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<ApplicationRoleStore>().AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest(); 
             builder.RegisterType<ApplicationRoleManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
