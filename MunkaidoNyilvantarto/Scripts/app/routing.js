@@ -3,7 +3,9 @@
     "use strict";
 
     angular.module('routes')
-    .config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
+    .config(['$routeProvider', '$httpProvider', 'USER_ROLES', function ($routeProvider, $httpProvider, USER_ROLES) {
+
+        $httpProvider.interceptors.push('httpErrorsInterceptor');
 
         $routeProvider.
             when('/vedett', {
@@ -17,11 +19,23 @@
                 templateUrl: '/Templates/login.html',
                 controller: 'loginCtrl'
             }).
+            when('/error/404', {
+                templateUrl: '/Templates/notfound.html'
+            }).
             otherwise({
                 templateUrl: '/Templates/login.html',
                 controller: 'loginCtrl'
             });
         
+    }])
+    .factory('httpErrorsInterceptor', ['$location', function ($location) {
+        return {
+            responseError: function (rejection) {
+                if (rejection.status == 404) {
+                    $location.path('/error/404');
+                }
+            }
+        };
     }])
     .run(['AuthService', '$rootScope', function (AuthService, $rootScope) {
         $rootScope.$on('$routeChangeStart', function (event, next) {
