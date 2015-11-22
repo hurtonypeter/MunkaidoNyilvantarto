@@ -14,5 +14,7 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<IServiceResult> UpdateComment(CommentEditViewModel model);
                 
         Task<List<CommentListViewModel>> GetCommentsByIssue(int issueId);
+
+        Task<CommentEditViewModel> GetCommentEditViewModel(int id);
     }
 }

@@ -78,10 +78,12 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
 
         public async Task<List<CommentListViewModel>> GetCommentsByIssue(int issueId)
         {
-            return await context.Comments
+            return (await context.Comments
+                .Include(c => c.User)
                 .Where(c => c.Issue.Id == issueId)
+                .ToListAsync())
                 .Select(c => mapper.Map<CommentListViewModel>(c))
-                .ToListAsync();
+                .ToList();
         }
 
         public async Task<IServiceResult> UpdateComment(CommentEditViewModel model)
@@ -116,6 +118,16 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             }
 
             return result;
+        }
+
+        public async Task<CommentEditViewModel> GetCommentEditViewModel(int id)
+        {
+            var comment = await context.Comments
+                .Include(c => c.Issue)
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return comment == null ? null : mapper.Map<CommentEditViewModel>(comment);
         }
     }
 }

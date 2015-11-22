@@ -2,6 +2,7 @@
 using MunkaidoNyilvantarto.Data.Entity;
 using MunkaidoNyilvantarto.ViewModels.Comment;
 using MunkaidoNyilvantarto.ViewModels.Issue;
+using MunkaidoNyilvantarto.ViewModels.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,13 @@ namespace MunkaidoNyilvantarto.BLL
                 .ForMember(dst => dst.ProjectId, o => o.MapFrom(src => src.Project.Id));
 
             this.CreateMap<Issue, IssueListViewModel>();
-            
+
+            //Project
+            this.CreateMap<ProjectEditViewModel, Project>();
+            this.CreateMap<Project, ProjectEditViewModel>()
+                .ForMember(dst => dst.ResponsibleUserId, o => o.MapFrom(src => src.Responsible.Id));
+
+            this.CreateMap<Project, ProjectListViewModel>();
         }
     }
 }

@@ -14,5 +14,7 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<IServiceResult> UpdateProject(ProjectEditViewModel model);
 
         Task<List<ProjectListViewModel>> ListProjects();
+
+        Task<ProjectEditViewModel> GetProjectEditViewModel(int id);
     }
 }
