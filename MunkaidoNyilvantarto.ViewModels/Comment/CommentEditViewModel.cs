@@ -20,7 +20,6 @@ namespace MunkaidoNyilvantarto.ViewModels.Comment
         /// <summary>
         /// A user id-ja aki felvette a commentet
         /// </summary>
-        [Required(ErrorMessage = "Kötelező a felhasználót megadni")]
         public string UserId { get; set; }
 
         /// <summary>
