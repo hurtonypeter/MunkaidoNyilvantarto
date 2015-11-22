@@ -15,7 +15,7 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// A kommenthez tartozó fealdat
         /// </summary>
         [Required]
-        public Issue Issue { get; set; }
+        public virtual Issue Issue { get; set; }
 
         /// <summary>
         /// A Comment címe

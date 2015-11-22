@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MunkaidoNyilvantarto.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,19 @@ namespace MunkaidoNyilvantarto.ViewModels.Issue
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
+        /// <summary>
+        /// A feladat leírása
+        /// </summary>
         public string Description { get; set; }
 
-        public double TotalHours { get; set; }
+        /// <summary>
+        /// A feladat neve
+        /// </summary>
+        public string Title { get; set; }
 
-        public string State { get; set; }
+        /// <summary>
+        /// A feladat állapota
+        /// </summary>
+        public IssueState State { get; set; }
     }
 }
