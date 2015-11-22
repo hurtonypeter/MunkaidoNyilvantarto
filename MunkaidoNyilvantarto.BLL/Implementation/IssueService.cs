@@ -69,9 +69,23 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
                 .ToListAsync();
         }
 
-        public Task<IServiceResult> UpdateIssue(IssueEditViewModel model)
+        public async Task<IServiceResult> UpdateIssue(IssueEditViewModel model)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult<IssueEditViewModel>();
+
+            try
+            {
+                var issue = mapper.Map<Issue>(model);
+
+                await context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+                result.AddError("", e.Message);
+            }
+
+            return result;
         }
     }
 }

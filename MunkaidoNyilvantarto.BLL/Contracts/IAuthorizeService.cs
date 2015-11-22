@@ -14,6 +14,6 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         /// <param name="userId"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        Task<bool> HavePermissoinToProject(string userId, int projectId);
+        bool HavePermissoinToProject(string userId, int projectId);
     }
 }
