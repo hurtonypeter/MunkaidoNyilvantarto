@@ -15,6 +15,8 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
 
         Task<IServiceResult> DeleteSpentTime(int id);
 
-        Task<List<SpentTimeListViewModel>> GetSpentTimesByProject(int projectId);
+        Task<List<SpentTimeListViewModel>> GetSpentTimesByIssue(int issueId);
+
+        Task<SpentTimeEditViewModel> GetSpentTiimeViewModel(int id);
     }
 }
