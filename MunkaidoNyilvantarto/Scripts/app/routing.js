@@ -8,6 +8,13 @@
         $httpProvider.interceptors.push('httpErrorsInterceptor');
 
         $routeProvider.
+            when('/', {
+                redirectTo: '/projects'
+            }).
+            when('/projects', {
+                templateUrl: '/Templates/projects.html',
+                controller: 'projectListCtrl'
+            }).
             when('/vedett', {
                 templateUrl: '/Templates/vedett.html',
                 controller: 'loginCtrl',
@@ -23,8 +30,7 @@
                 templateUrl: '/Templates/notfound.html'
             }).
             otherwise({
-                templateUrl: '/Templates/login.html',
-                controller: 'loginCtrl'
+                redirectTo: '/error/404'
             });
         
     }])

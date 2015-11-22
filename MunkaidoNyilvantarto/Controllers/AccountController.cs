@@ -11,11 +11,12 @@ using Microsoft.Owin.Security;
 using MunkaidoNyilvantarto.Models;
 using MunkaidoNyilvantarto.BLL.Identity;
 using MunkaidoNyilvantarto.Data.Entity;
+using MunkaidoNyilvantarto.Common.Controllers;
 
 namespace MunkaidoNyilvantarto.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly ApplicationSignInManager SignInManager;
         private ApplicationUserManager UserManager;

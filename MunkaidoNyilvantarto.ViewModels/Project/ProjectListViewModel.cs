@@ -8,6 +8,10 @@ namespace MunkaidoNyilvantarto.ViewModels.Project
 {
     public class ProjectListViewModel
     {
+        public int Id { get; set; }
 
+        public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

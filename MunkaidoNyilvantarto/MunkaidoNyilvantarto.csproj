@@ -186,10 +186,13 @@
     <Compile Include="App_Start\Startup.DependencyInjection.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Controllers\BaseController.cs" />
+    <Compile Include="Common\Controllers\JsonNetResult.cs" />
     <Compile Include="Common\ErrorHandling\JsonHandleErrorAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +234,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\projectControllers.js" />
     <Content Include="Scripts\app\routing.js" />
     <Content Include="Scripts\app\services.js" />
     <Content Include="Scripts\app\userControllers.js" />
@@ -1006,6 +1010,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\login.html" />
     <Content Include="Templates\notfound.html" />
+    <Content Include="Templates\projects.html" />
     <Content Include="Templates\vedett.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1043,6 +1048,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1059,6 +1065,10 @@
     <ProjectReference Include="..\MunkaidoNyilvantarto.Data\MunkaidoNyilvantarto.Data.csproj">
       <Project>{63012988-e51d-426c-b979-9b937500e13c}</Project>
       <Name>MunkaidoNyilvantarto.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MunkaidoNyilvantarto.ViewModels\MunkaidoNyilvantarto.ViewModels.csproj">
+      <Project>{2ed06beb-e902-4a49-9a7b-f4234d1291ac}</Project>
+      <Name>MunkaidoNyilvantarto.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

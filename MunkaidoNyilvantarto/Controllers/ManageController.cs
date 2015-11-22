@@ -8,11 +8,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MunkaidoNyilvantarto.Models;
 using MunkaidoNyilvantarto.BLL.Identity;
+using MunkaidoNyilvantarto.Common.Controllers;
 
 namespace MunkaidoNyilvantarto.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager SignInManager;
         private ApplicationUserManager UserManager;
