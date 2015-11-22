@@ -11,9 +11,16 @@
             when('/', {
                 redirectTo: '/projects'
             }).
+            when('', {
+                redirectTo: '/projects'
+            }).
             when('/projects', {
                 templateUrl: '/Templates/projects.html',
                 controller: 'projectListCtrl'
+            }).
+            when('/projects/details/:projectId', {
+                templateUrl: '/Templates/project-details.html',
+                controller: 'projectDetailsCtrl'
             }).
             when('/vedett', {
                 templateUrl: '/Templates/vedett.html',

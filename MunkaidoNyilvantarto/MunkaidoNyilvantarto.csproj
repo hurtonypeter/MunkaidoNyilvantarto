@@ -1010,6 +1010,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\login.html" />
     <Content Include="Templates\notfound.html" />
+    <Content Include="Templates\project-details.html" />
     <Content Include="Templates\projects.html" />
     <Content Include="Templates\vedett.html" />
     <Content Include="Web.config" />
