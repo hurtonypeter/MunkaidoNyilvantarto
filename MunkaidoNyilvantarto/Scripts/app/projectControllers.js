@@ -9,6 +9,9 @@
                 $scope.projects = resp.data.data;
             }
         });
+    }])
+    .controller('projectDetailsCtrl', ['$http', 'alertService', '$scope', function ($http, alertService, $scope) {
+        
     }]);
 
 })();
