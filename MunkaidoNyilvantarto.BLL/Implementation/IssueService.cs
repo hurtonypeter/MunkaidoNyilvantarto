@@ -61,6 +61,15 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             return result;
         }
 
+        public async Task<IssueEditViewModel> GetIssueEditViewModel(int id)
+        {
+            var issue = await context.Issues
+                .Include(c => c.Project)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            return issue == null ? null : mapper.Map<IssueEditViewModel>(issue);
+        }
+
         public async Task<List<IssueListViewModel>> GetIssuesByProject(int projectId)
         {
             return await context.Issues
@@ -75,10 +84,26 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
 
             try
             {
-                var issue = mapper.Map<Issue>(model);
+                var issue = model.Id.HasValue ? await context.Issues.FindAsync(model.Id.Value) : null;
+                if(issue == null)
+                {
+                    result.AddError("", "Ilyen feladat nem létezik");
+                    return result;
+                }
 
-                await context.SaveChangesAsync();
+                if(!Enum.IsDefined(typeof(IssueState), model.State))
+                {
+                    result.AddError(m => m.State, "Nincs ilyen állaot");
+                }
+                    
+                if(result.Succeeded)
+                {
+                    issue.Description = model.Description;
+                    issue.State = model.State;
+                    issue.Title = model.Title;
 
+                    await context.SaveChangesAsync();
+                }
             }
             catch (Exception e)
             {
