@@ -25,5 +25,10 @@ namespace MunkaidoNyilvantarto.ViewModels.Issue
         /// A feladat állapota
         /// </summary>
         public IssueState State { get; set; }
+
+        /// <summary>
+        /// A feladatra eddig összesen beregisztrált idő órában
+        /// </summary>
+        public double TotalHours { get; set; }
     }
 }

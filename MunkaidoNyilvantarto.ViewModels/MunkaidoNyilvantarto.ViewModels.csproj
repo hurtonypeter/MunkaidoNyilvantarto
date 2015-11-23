@@ -45,6 +45,7 @@
     <Compile Include="Comment\CommentListViewModel.cs" />
     <Compile Include="Issue\IssueEditViewModel.cs" />
     <Compile Include="Issue\IssueListViewModel.cs" />
+    <Compile Include="Project\ProjectDetailsViewModel.cs" />
     <Compile Include="Project\ProjectEditViewModel.cs" />
     <Compile Include="Project\ProjectListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,7 +25,8 @@ namespace MunkaidoNyilvantarto.Common.Controllers
                 response.ContentEncoding = ContentEncoding;
 
             // If you need special handling, you can call another form of SerializeObject below
-            var serializedObject = JsonConvert.SerializeObject(Data, Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            //var serializedObject = JsonConvert.SerializeObject(Data, Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            var serializedObject = JsonConvert.SerializeObject(Data, Formatting.Indented);
             response.Write(serializedObject);
         }
     }

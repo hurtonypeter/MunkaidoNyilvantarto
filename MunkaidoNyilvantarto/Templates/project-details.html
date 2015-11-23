@@ -1,14 +1,14 @@
-﻿<h1>{{project.name}}</h1>
+﻿<h1>{{project.Name}}</h1>
 
 <h4>Leírás</h4>
-<p>{{project.description}}</p>
+<p>{{project.Description}}</p>
 
 <h4>Feladatok</h4>
 <p ng-if="issues == undefined || issues.length == 0">Nincs egy feladat sem projekthez.</p>
-<div class="list-group" ng-repeat="issue in issues">
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">{{item.title}}</h4>
-        <p class="list-group-item-text"><strong>{{item.description}}</strong></p>
-        <p class="list-group-item-text"><strong>{{item.totalHours}}</strong></p>
+<div class="list-group">
+    <a href="#" class="list-group-item" ng-class="setColor(issue.State)"  ng-repeat="issue in issues">
+        <h4 class="list-group-item-heading">{{issue.Title}}</h4>
+        <p class="list-group-item-text"><strong>{{issue.Description}}</strong></p>
+        <p class="list-group-item-text"><strong>Összes idő: </strong>{{issue.TotalHours}}</p>
     </a>
 </div>

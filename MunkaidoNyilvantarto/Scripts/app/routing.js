@@ -22,6 +22,10 @@
                 templateUrl: '/Templates/project-details.html',
                 controller: 'projectDetailsCtrl'
             }).
+            when('/issues/details/:issueId', {
+                templateUrl: '/Templates/issue-details.html',
+                controller: 'issueDetailsCtrl'
+            }).
             when('/vedett', {
                 templateUrl: '/Templates/vedett.html',
                 controller: 'loginCtrl',
@@ -35,10 +39,10 @@
             }).
             when('/error/404', {
                 templateUrl: '/Templates/notfound.html'
-            }).
+            })/*.
             otherwise({
                 redirectTo: '/error/404'
-            });
+            })*/;
         
     }])
     .factory('httpErrorsInterceptor', ['$location', function ($location) {
