@@ -20,7 +20,6 @@ namespace MunkaidoNyilvantarto.ViewModels.SpentTime
         /// <summary>
         /// A felhasználó id-ja
         /// </summary>
-        [Required]
         public string UserId { get; set; }
 
         /// <summary>
