@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,13 @@ namespace MunkaidoNyilvantarto.Data.Entity
         /// <summary>
         /// A projektért felelős személy
         /// </summary>
-        [Required]
+        [InverseProperty("ResponsibleProjects")]
         public virtual ApplicationUser Responsible { get; set; }
 
         /// <summary>
         /// A projekten dologozó munkások
         /// </summary>
+        [InverseProperty("WorkerProjects")]
         public virtual ICollection<ApplicationUser> Workers { get; set; }
 
         /// <summary>
