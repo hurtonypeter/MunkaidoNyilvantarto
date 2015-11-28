@@ -10,6 +10,15 @@
             }
         });
     }])
+    .controller('projectCreateCtrl', ['$http', 'alertService', '$scope', '$location', function ($http, alertService, $scope, $location) {
+        $scope.submit = function () {
+            $http.post('/Projects/Create', $scope.model).then(function (resp) {
+                if (resp.data.Succeeded) {
+                    $location.path('/projects');
+                }
+            });
+        };
+    }])
     .controller('projectDetailsCtrl', ['$http', 'alertService', '$scope', '$routeParams', function ($http, alertService, $scope, $routeParams) {
         $http.get('/Projects/GetProjectDetails/' + $routeParams.projectId).then(function (resp) {
             if (resp.data.Succeeded) {

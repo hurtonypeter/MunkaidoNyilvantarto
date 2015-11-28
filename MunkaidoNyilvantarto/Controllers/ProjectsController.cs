@@ -33,5 +33,13 @@ namespace MunkaidoNyilvantarto.Controllers
                 }
             });
         }
+
+        public async Task<ActionResult> Create(ProjectEditViewModel model)
+        {
+            return Json(new ServiceResult
+            {
+
+            });
+        }
     }
 }

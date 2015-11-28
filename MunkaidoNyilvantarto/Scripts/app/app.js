@@ -10,4 +10,27 @@
     angular.module('projectControllers', []);
     angular.module('issueControllers', []);
 
+    angular.module('munkaidoNyilvantarto')
+    .config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('httpLoadingAnimationInterceptor');
+    }])
+    .factory('httpLoadingAnimationInterceptor', [function () {
+        return {
+            request: function (config) {
+                $('.page-spinner-bar').show();
+                return config;
+            },
+            requestError: function () {
+                $('.page-spinner-bar').hide();
+            },
+            response: function (response) {
+                $('.page-spinner-bar').hide();
+                return response;
+            },
+            responseError: function () {
+                $('.page-spinner-bar').hide();
+            }
+        }
+    }]);
+
 })();

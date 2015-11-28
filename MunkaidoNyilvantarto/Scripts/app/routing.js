@@ -18,6 +18,10 @@
                 templateUrl: '/Templates/projects.html',
                 controller: 'projectListCtrl'
             }).
+            when('/projects/create', {
+                templateUrl: '/Templates/project-edit.html',
+                controller: 'projectCreateCtrl'
+            }).
             when('/projects/details/:projectId', {
                 templateUrl: '/Templates/project-details.html',
                 controller: 'projectDetailsCtrl'

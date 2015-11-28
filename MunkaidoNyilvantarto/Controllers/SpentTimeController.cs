@@ -34,7 +34,9 @@ namespace MunkaidoNyilvantarto.Controllers
             {
                 Data = new List<SpentTimeListViewModel>
                 {
-                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel", Date = DateTime.Now, Hour = 6.5 }
+                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel", Date = DateTime.Now, Hour = 6.5 },
+                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel 2", Date = DateTime.Now, Hour = 2.5 },
+                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel 2", Date = DateTime.Now, Hour = 3.5 }
                 }
             });
         }

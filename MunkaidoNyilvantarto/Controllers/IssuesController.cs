@@ -1,6 +1,7 @@
 ﻿using MunkaidoNyilvantarto.BLL;
 using MunkaidoNyilvantarto.BLL.Contracts;
 using MunkaidoNyilvantarto.Common.Controllers;
+using MunkaidoNyilvantarto.Data.Entity;
 using MunkaidoNyilvantarto.ViewModels.Issue;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,10 @@ namespace MunkaidoNyilvantarto.Controllers
                 Data = new IssueDetailsViewModel
                 {
                     Id = 1,
+                    ProjectId = 2,
                     Title = "issue title",
                     Description = "issue description",
-                    State = Data.Entity.IssueState.New,
+                    State = Data.Entity.IssueState.Ready,
                     Comments = new List<ViewModels.Comment.CommentListViewModel>
                     {
                         new ViewModels.Comment.CommentListViewModel { Id = 1, Title = "szép munka!", Body = "nagyon jól meglettek ezek", UserName = "Nagyonfelelős Norbert", Created = DateTime.Now }
@@ -64,6 +66,14 @@ namespace MunkaidoNyilvantarto.Controllers
         }
 
         public async Task<ActionResult> CreateIssue(IssueEditViewModel model)
+        {
+            return Json(new ServiceResult
+            {
+
+            });
+        }
+
+        public async Task<ActionResult> ChangeState(int issueId, IssueState newState)
         {
             return Json(new ServiceResult
             {

@@ -3,15 +3,25 @@
     "use strict";
 
     angular.module('issueControllers')
-    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', '$window', function ($scope, $routeParams, $http, $window) {
+        $scope.issueStates = $window.issueStates;
+        
+
+
         $http.get('/Issues/GetIssueDetails/' + $routeParams.issueId).then(function (resp) {
             if (resp.data.Succeeded) {
                 $scope.issue = resp.data.Data;
+                $scope.$watch(function () { return $scope.issue.State; }, function (newValue, oldValue) {
+                    if (newValue !== oldValue) {
+                        $http.post('/Issues/ChangeState', { issueId: $scope.issue.Id, newState: newValue });
+                    }
+                });
             }
         });
 
         $scope.spentTimeModel = {
-            IssueId: $routeParams.issueId
+            IssueId: $routeParams.issueId,
+            Date: new Date()
         };
         $scope.saveSpentTime = function () {
             $http.post('/SpentTime/Save', $scope.spentTimeModel).then(function (resp) {
@@ -19,6 +29,9 @@
                     $http.get('/SpentTime/GetSpentTimesByIssue/' + $routeParams.issueId).then(function (resp2) {
                         if (resp2.data.Succeeded) {
                             $scope.issue.SpentTimes = resp2.data.Data;
+                            $scope.spentTimeModel = {
+                                IssueId: $routeParams.issueId
+                            };
                         }
                     })
                 }
@@ -27,13 +40,15 @@
         $scope.editSpentTime = function (id) {
             $http.get('/SpentTime/GetSpentTimeEditViewModel/' + id).then(function (resp) {
                 if (resp.data.Succeeded) {
+                    resp.data.Data.Date = new Date(resp.data.Data.Date);
                     $scope.spentTimeModel = resp.data.Data;
                 }
             })
         };
         $scope.cancelSpentTimeEdit = function () {
             $scope.spentTimeModel = {
-                IssueId: $routeParams.issueId
+                IssueId: $routeParams.issueId,
+                Date: new Date()
             };
         };
 
@@ -45,6 +60,9 @@
             $http.post('/Comments/Create', $scope.commentModel).then(function (resp) {
                 if (resp.data.Succeeded) {
                     $scope.issue.Comments.push(resp.data.Data);
+                    $scope.commentModel = {
+                        IssueId: $routeParams.issueId
+                    };
                 }
             });
         };
@@ -59,7 +77,7 @@
             console.log($scope.model);
             $http.post('/Issues/CreateIssue', $scope.model).then(function (resp) {
                 if (resp.data.Succeeded) {
-                    $location.path('/projects/details/' + $scope.model.ProjectId);
+                    $location.path('/projects/details/' + $routeParams.projectId);
                 }
             });
         };

@@ -2,7 +2,13 @@
 
 <p><strong>Leírás: </strong>{{issue.Description}}</p>
 
-<p><strong>Státusz: </strong>{{issue.State}}</p>
+<p><strong>Státusz: </strong>
+    <select ng-model="issue.State">
+        <option ng-repeat="state in issueStates" value="{{state}}">{{state}}</option>
+    </select>
+</p>
+
+<p><a ng-href="#/projects/details/{{issue.ProjectId}}"><< vissza</a></p>
 
 <h3>Bejegyzett idők</h3>
 <table class="table table-bordered">
@@ -29,15 +35,15 @@
 <form class="form-inline" ng-submit="saveSpentTime()">
     <div class="form-group">
         <label for="date">Dátum</label>
-        <input type="text" class="form-control" ng-model="spentTimeModel.Date" id="date">
+        <input type="date" class="form-control" ng-model="spentTimeModel.Date" id="date" required>
     </div>
     <div class="form-group">
         <label for="time">Idő</label>
-        <input type="text" class="form-control" ng-model="spentTimeModel.Hour" id="time">
+        <input type="number" class="form-control" ng-model="spentTimeModel.Hour" id="time" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.1" required>
     </div>
     <div class="form-group">
         <label for="descr">Megjegyzés</label>
-        <input type="text" class="form-control" ng-model="spentTimeModel.Description" id="descr">
+        <input type="text" class="form-control" ng-model="spentTimeModel.Description" id="descr" required>
     </div>
     <button type="submit" class="btn btn-success">Mentés</button>
     <button type="button" class="btn btn-default" 
@@ -64,13 +70,13 @@
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">Cím</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="title" ng-model="commentModel.Title">
+            <input type="text" class="form-control" id="title" ng-model="commentModel.Title" required>
         </div>
     </div>
     <div class="form-group">
         <label for="body" class="col-sm-2 control-label">Megjegyzés</label>
         <div class="col-sm-10">
-            <textarea type="text" class="form-control" id="body" ng-model="commentModel.Body"></textarea>
+            <textarea type="text" class="form-control" id="body" ng-model="commentModel.Body" required></textarea>
         </div>
     </div>
     <div class="form-group">

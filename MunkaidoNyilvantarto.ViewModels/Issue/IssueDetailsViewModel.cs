@@ -15,6 +15,8 @@ namespace MunkaidoNyilvantarto.ViewModels.Issue
     {
         public int Id { get; set; }
 
+        public int ProjectId { get; set; }
+
         /// <summary>
         /// A feladat leírása
         /// </summary>

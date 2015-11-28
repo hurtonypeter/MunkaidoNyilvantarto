@@ -6,7 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <script>
+        var issueStates = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Enum.GetNames(typeof(MunkaidoNyilvantarto.Data.Entity.IssueState))));
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
