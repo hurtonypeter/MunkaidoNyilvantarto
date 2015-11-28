@@ -41,6 +41,8 @@ namespace MunkaidoNyilvantarto.BLL
 
             this.CreateMap<Project, ProjectListViewModel>();
 
+            this.CreateMap<Project, ProjectDetailsViewModel>();
+
             //SpentTime
             this.CreateMap<SpentTimeEditViewModel, SpentTime>();
             this.CreateMap<SpentTime, SpentTimeEditViewModel>()

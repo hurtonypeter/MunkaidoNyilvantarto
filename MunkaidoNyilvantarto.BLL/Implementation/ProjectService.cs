@@ -68,6 +68,13 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             return result;
         }
 
+        public async Task<ProjectDetailsViewModel> GetProjectDetails(int id)
+        {
+            var project = await context.Projects.SingleOrDefaultAsync(p => p.Id == id);
+
+            return project == null ? null : mapper.Map<Project, ProjectDetailsViewModel>(project);
+        }
+
         public async Task<ProjectEditViewModel> GetProjectEditViewModel(int id)
         {
             var project = await context.Projects
@@ -79,13 +86,6 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
 
         public async Task<List<ProjectListViewModel>> ListProjects()
         {
-            //return new List<ProjectListViewModel>
-            //{
-            //    new ProjectListViewModel { Id = 1, Name = "Projektnév 1", Description = "leírás 1" },
-            //    new ProjectListViewModel { Id = 2, Name = "Projektnév 2", Description = "leírás 2" },
-            //    new ProjectListViewModel { Id = 3, Name = "Projektnév 3", Description = "leírás 3" }
-            //};
-
             return (await context.Projects
                 .ToListAsync())
                 .Select(p => mapper.Map<ProjectListViewModel>(p))

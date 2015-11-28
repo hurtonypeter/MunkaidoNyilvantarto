@@ -23,14 +23,15 @@ namespace MunkaidoNyilvantarto.Controllers
 
         public async Task<ActionResult> GetProjectDetails(int id)
         {
+            var project = await ProjectService.GetProjectDetails(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
             return Json(new ServiceResult
             {
-                Data = new ProjectDetailsViewModel
-                {
-                    Id = 1,
-                    Description = "projekt leírása",
-                    Name = "első projekt"
-                }
+                Data = project
             });
         }
 
