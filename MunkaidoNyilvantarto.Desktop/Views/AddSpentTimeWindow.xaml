@@ -1,0 +1,34 @@
+﻿<Window x:Class="MunkaidoNyilvantarto.Desktop.Views.AddSpentTimeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunkaidoNyilvantarto.Desktop.Views"
+        mc:Ignorable="d"
+        Title="AddSpentTimeWindow" Height="300" Width="300">
+    <StackPanel Grid.Row="0" Grid.Column="0" Margin="10">
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Width="100" Content="Dátum"/>
+            <DatePicker Width="150" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Width="100" Content="Feladat"/>
+            <ComboBox Width="150" ItemsSource="{Binding Issues}" DisplayMemberPath="Title"  SelectedValuePath="Id" SelectedValue="{Binding SelectedIssue, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Width="100" Content="Órák száma"/>
+            <TextBox Width="150" Text="{Binding Hour, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Width="100" Content="Leírás"/>
+            <TextBox Width="150" Text="{Binding Description, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Width="100" Content="Feldolgozás..." Visibility="{Binding IsProgressingVisibility}" />
+            <Button Width="150" Content="Idő felvétele" Command="{Binding AddTimeCommand}" IsEnabled="{Binding IsNotProgressing}"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+            <Label  Content="{Binding ErrorMessage}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

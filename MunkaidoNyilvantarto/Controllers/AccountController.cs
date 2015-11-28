@@ -12,6 +12,7 @@ using MunkaidoNyilvantarto.Models;
 using MunkaidoNyilvantarto.BLL.Identity;
 using MunkaidoNyilvantarto.Data.Entity;
 using MunkaidoNyilvantarto.Common.Controllers;
+using MunkaidoNyilvantarto.BLL;
 
 namespace MunkaidoNyilvantarto.Controllers
 {
@@ -65,6 +66,38 @@ namespace MunkaidoNyilvantarto.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> LoginToDesktop(LoginViewModel model)
+        {
+            var ret = new ServiceResult();
+
+            if (!ModelState.IsValid)
+            {
+                ret.AddError("", "Hibás bejelentkezési adatok");
+                return Json(ret);
+            }
+            
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return Json(ret);
+                case SignInStatus.LockedOut:
+                    ret.AddError("", "Kizárva");
+                    break;
+                case SignInStatus.RequiresVerification:
+                    ret.AddError("", "Megerősítés szükséges");
+                    break;
+                case SignInStatus.Failure:
+                default:
+                    ret.AddError("", "Sikertelen bejelentkezés");
+                    break;
+            }
+
+            return Json(ret);
         }
 
         //
