@@ -28,5 +28,47 @@ namespace MunkaidoNyilvantarto.Controllers
                 }
             });
         }
+
+        public async Task<ActionResult> GetIssueDetails(int id)
+        {
+            return Json(new ServiceResult
+            {
+                Data = new IssueDetailsViewModel
+                {
+                    Id = 1,
+                    Title = "issue title",
+                    Description = "issue description",
+                    State = Data.Entity.IssueState.New,
+                    Comments = new List<ViewModels.Comment.CommentListViewModel>
+                    {
+                        new ViewModels.Comment.CommentListViewModel { Id = 1, Title = "szép munka!", Body = "nagyon jól meglettek ezek", UserName = "Nagyonfelelős Norbert", Created = DateTime.Now }
+                    },
+                    SpentTimes = new List<ViewModels.SpentTime.SpentTimeListViewModel>
+                    {
+                        new ViewModels.SpentTime.SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel", Date = DateTime.Now, Hour = 6.5 }
+                    }
+                }
+            });
+        }
+
+        public async Task<ActionResult> GetIssueEditViewModel(int id)
+        {
+            return Json(new ServiceResult
+            {
+                Data = new IssueEditViewModel
+                {
+                    Id = id,
+                    ProjectId = 3
+                }
+            });
+        }
+
+        public async Task<ActionResult> CreateIssue(IssueEditViewModel model)
+        {
+            return Json(new ServiceResult
+            {
+
+            });
+        }
     }
 }

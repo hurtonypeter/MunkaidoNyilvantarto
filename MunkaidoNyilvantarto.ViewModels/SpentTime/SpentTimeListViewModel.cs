@@ -21,5 +21,10 @@ namespace MunkaidoNyilvantarto.ViewModels.SpentTime
         /// Mennyit dolgozott
         /// </summary>
         public double Hour { get; set; }
+
+        /// <summary>
+        /// megjegyzés
+        /// </summary>
+        public string Description { get; set; }
     }
 }

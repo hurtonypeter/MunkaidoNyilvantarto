@@ -107,7 +107,7 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
                 if (result.Succeeded)
                 {
                     comment.Body = model.Body;
-                    comment.Title = model.Titel;
+                    comment.Title = model.Title;
 
                     await context.SaveChangesAsync();
                 }

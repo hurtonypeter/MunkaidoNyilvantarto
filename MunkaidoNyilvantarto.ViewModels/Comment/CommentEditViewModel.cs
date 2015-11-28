@@ -32,6 +32,6 @@ namespace MunkaidoNyilvantarto.ViewModels.Comment
         /// Cím
         /// </summary>
         [Required(ErrorMessage = "Kötelező a címet megadni")]
-        public string Titel { get; set; }
+        public string Title { get; set; }
     }
 }

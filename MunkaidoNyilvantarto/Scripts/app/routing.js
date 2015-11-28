@@ -26,6 +26,10 @@
                 templateUrl: '/Templates/issue-details.html',
                 controller: 'issueDetailsCtrl'
             }).
+            when('/issues/create/:projectId', {
+                templateUrl: '/Templates/issue-edit.html',
+                controller: 'issueCreateCtrl'
+            }).
             when('/vedett', {
                 templateUrl: '/Templates/vedett.html',
                 controller: 'loginCtrl',
@@ -57,7 +61,7 @@
     .run(['AuthService', '$rootScope', function (AuthService, $rootScope) {
         $rootScope.$on('$routeChangeStart', function (event, next) {
 
-            if (next.data != undefined && next.data.roles != undefined) {
+            if (next != undefined && next.data != undefined && next.data.roles != undefined) {
                 var authorizedRoles = next.data.roles;
                 console.log(authorizedRoles);
 

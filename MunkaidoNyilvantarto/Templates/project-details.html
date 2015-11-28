@@ -4,9 +4,10 @@
 <p>{{project.Description}}</p>
 
 <h4>Feladatok</h4>
+<p><a ng-href="#/issues/create/{{project.Id}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span> Új feladat</a></p>
 <p ng-if="issues == undefined || issues.length == 0">Nincs egy feladat sem projekthez.</p>
 <div class="list-group">
-    <a href="#" class="list-group-item" ng-class="setColor(issue.State)"  ng-repeat="issue in issues">
+    <a ng-href="#/issues/details/{{issue.Id}}" class="list-group-item" ng-class="setColor(issue.State)"  ng-repeat="issue in issues">
         <h4 class="list-group-item-heading">{{issue.Title}}</h4>
         <p class="list-group-item-text"><strong>{{issue.Description}}</strong></p>
         <p class="list-group-item-text"><strong>Összes idő: </strong>{{issue.TotalHours}}</p>

@@ -1,0 +1,81 @@
+﻿<h2>Issue: #{{issue.Id}} {{issue.Title}}</h2>
+
+<p><strong>Leírás: </strong>{{issue.Description}}</p>
+
+<p><strong>Státusz: </strong>{{issue.State}}</p>
+
+<h3>Bejegyzett idők</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Név</th>
+            <th>Dátum</th>
+            <th>Idő</th>
+            <th>Megjegyzés</th>
+            <th>Műveletek</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="time in issue.SpentTimes">
+            <td>{{time.UserName}}</td>
+            <td>{{time.Date | date : 'yyyy. M. dd.'}}</td>
+            <td>{{time.Hour}}</td>
+            <td>{{time.Description}}</td>
+            <td><button type="button" ng-click="editSpentTime(time.Id)" class="btn btn-xs btn-default">Szerkesztés</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<form class="form-inline" ng-submit="saveSpentTime()">
+    <div class="form-group">
+        <label for="date">Dátum</label>
+        <input type="text" class="form-control" ng-model="spentTimeModel.Date" id="date">
+    </div>
+    <div class="form-group">
+        <label for="time">Idő</label>
+        <input type="text" class="form-control" ng-model="spentTimeModel.Hour" id="time">
+    </div>
+    <div class="form-group">
+        <label for="descr">Megjegyzés</label>
+        <input type="text" class="form-control" ng-model="spentTimeModel.Description" id="descr">
+    </div>
+    <button type="submit" class="btn btn-success">Mentés</button>
+    <button type="button" class="btn btn-default" 
+            ng-click="cancelSpentTimeEdit()"
+            ng-if="spentTimeModel.Id != undefined">Mégsem</button>
+</form>
+
+<h3>Megjegyzések</h3>
+
+<div class="panel panel-default" ng-repeat="comment in issue.Comments">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{comment.Title}} <small>- {{comment.UserName}}</small>
+            <span class="pull-right">{{comment.Created | date : 'yyyy. M. dd. HH:mm'}}</span>
+        </h3>
+        
+    </div>
+    <div class="panel-body">
+        {{comment.Body}}
+    </div>
+</div>
+
+<h4>Új megjegyzés</h4>
+<form class="form-horizontal" ng-submit="saveComment()">
+    <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Cím</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" ng-model="commentModel.Title">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="body" class="col-sm-2 control-label">Megjegyzés</label>
+        <div class="col-sm-10">
+            <textarea type="text" class="form-control" id="body" ng-model="commentModel.Body"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Mentés</button>
+        </div>
+    </div>
+</form>

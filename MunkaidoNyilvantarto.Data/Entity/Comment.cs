@@ -30,6 +30,11 @@ namespace MunkaidoNyilvantarto.Data.Entity
         public string Body { get; set; }
 
         /// <summary>
+        /// komment írásának ideje
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
         /// A felhasználó aki kommentelt
         /// </summary>
         [Required]
