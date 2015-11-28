@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="Bejelentkezés" Height="500" Width="500">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Label Content="Felhasználónév" FontSize="14" />
+        <Label Content="Email" FontSize="14" />
         <TextBox Text="{Binding UserName, Mode=TwoWay}" FontSize="14" Width="350" />
         <Label Content="Jelszó" FontSize="14" />
-        <TextBox Text="{Binding Password, Mode=TwoWay}" FontSize="14" Width="350" />
+        <PasswordBox x:Name="password" FontSize="14" Width="350" />
         <Label Content="{Binding ErrorMessage}" FontSize="14" Foreground="Red" />
-        <Button Content="Bejelentkezés" Command="{Binding LoginCommand}" IsEnabled="{Binding IsNotProgressing}" />
+        <Button Content="Bejelentkezés" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=password}" IsEnabled="{Binding IsNotProgressing}" />
         <Label Content="Bejeltkezés folyamatban..." FontSize="14" Visibility="{Binding IsProgressingVisibility}" />
     </StackPanel>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using MunkaidoNyilvantarto.Desktop.Services;
+using MunkaidoNyilvantarto.Desktop.Views;
 using MunkaidoNyilvantarto.ViewModels.Issue;
 using MunkaidoNyilvantarto.ViewModels.SpentTime;
 using System;
@@ -16,37 +17,6 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
     public class WorkerViewModel : INotifyPropertyChanged
     {
         private DataService service = new DataService();
-
-        private DateTime _selectedDate;
-
-        public DateTime SelectedDate { get { return _selectedDate; } set { _selectedDate = value; OnPropertyChanged(); } }
-
-        private ObservableCollection<IssueListViewModel> _issues;
-
-        public ObservableCollection<IssueListViewModel> Issues
-        { get
-            {
-                if(_issues == null)
-                {
-                    _issues = new ObservableCollection<IssueListViewModel>();
-                }
-
-                return _issues;
-            }
-            set
-            {
-                _issues = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _selectedIssue;
-
-        public int SelectedIssue { get { return _selectedIssue; } set { _selectedIssue = value; OnPropertyChanged(); } }
-
-        public double Hour { get; set; }
-
-        public string Description { get; set; }
 
         private bool _isProgressing = false;
 
@@ -66,7 +36,7 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
         {
             get
             {
-                if (_issues == null)
+                if (_spentTimes == null)
                 {
                     _spentTimes = new ObservableCollection<SpentTimeDesktopListViewModel>();
                 }
@@ -83,15 +53,7 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
 
         public WorkerViewModel()
         {
-            Init();
-        }
-
-        private async void Init()
-        {
-            SelectedDate = DateTime.Today;
-            Issues = await service.GetIssuesForUser();
-            SpentTimes = await service.GetSpentTimesForUser();
-            SelectedIssue = Issues.Any() ? Issues.First().Id : 0;
+            RefresTable(new object());
         }
 
         private ICommand _addTimeCommand;
@@ -111,7 +73,43 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
 
         private void AddTime(object o)
         {
+            var window = new AddSpentTimeWindow();
+            window.Show();
+        }
 
+        private ICommand _refereshTableCommand;
+
+        public ICommand RefreshTableCommand
+        {
+            get
+            {
+                if(_refereshTableCommand == null)
+                {
+                    _refereshTableCommand = new RelayCommand(RefresTable);
+                }
+
+                return _refereshTableCommand;
+            }
+        }
+
+        private async void RefresTable(object o)
+        {
+            try
+            {
+                var result = await service.GetSpentTimesForUser();
+                if(result.Succeeded)
+                {
+                    SpentTimes = new ObservableCollection<SpentTimeDesktopListViewModel>(result.Data);
+                }
+                else
+                {
+                    ErrorMessage = string.Join(", ", result.Errors.Select(k => k.Value));
+                }
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Hiba történt az adatok lekérése közben";
+            }
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = "")
