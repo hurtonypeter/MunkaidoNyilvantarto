@@ -27,5 +27,10 @@ namespace MunkaidoNyilvantarto.ViewModels.Comment
         /// A felhasználó neve aki a kommentet írta
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// komment keletkezésének ideje
+        /// </summary>
+        public DateTime Created { get; set; }
     }
 }
