@@ -82,3 +82,7 @@ textarea {
 .page-spinner-bar > div {
     background: #337ab7;
 }
+
+#message-container > .alert:first-child {
+    margin-top: 20px;
+}

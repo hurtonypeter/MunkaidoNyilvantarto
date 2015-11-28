@@ -70,6 +70,43 @@ namespace MunkaidoNyilvantarto.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        public async Task<ActionResult> LoginToAngular(LoginViewModel model)
+        {
+            var ret = new ServiceResult();
+
+            if (!ModelState.IsValid)
+            {
+                ret.AddError("", "Hibás bejelentkezési adatok");
+                return Json(ret);
+            }
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    ret.Data = new {
+                        UserId = HttpContext.User.Identity.GetUserId(),
+                        UserName = HttpContext.User.Identity.Name,
+                        UserRoles = await UserManager.GetRolesAsync(HttpContext.User.Identity.GetUserId())
+                    };
+                    return Json(ret);
+                case SignInStatus.LockedOut:
+                    ret.AddError("", "Kizárva");
+                    break;
+                case SignInStatus.RequiresVerification:
+                    ret.AddError("", "Megerősítés szükséges");
+                    break;
+                case SignInStatus.Failure:
+                default:
+                    ret.AddError("", "Sikertelen bejelentkezés");
+                    break;
+            }
+
+            return Json(ret);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> LoginToDesktop(LoginViewModel model)
         {
             var ret = new ServiceResult();

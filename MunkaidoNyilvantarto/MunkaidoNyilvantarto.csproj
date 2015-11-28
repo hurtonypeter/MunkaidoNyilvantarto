@@ -1028,6 +1028,7 @@
     <Content Include="Templates\issue-edit.html" />
     <Content Include="Templates\login.html" />
     <Content Include="Templates\notfound.html" />
+    <Content Include="Templates\permissiondenied.html" />
     <Content Include="Templates\project-details.html" />
     <Content Include="Templates\project-edit.html" />
     <Content Include="Templates\projects.html" />

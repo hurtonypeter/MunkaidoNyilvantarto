@@ -25,7 +25,12 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#/projects">Projektek</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right" ng-controller="userBarCtrl">
+                    <li ng-if="currentUser" class="navbar-text">
+                        Üdv {{currentUser.userName}}!
+                    </li>
+                    <li ng-if="!currentUser"><a href="#/login">Bejelentkezés</a></li>
+                </ul>
             </div>
         </div>
     </div>

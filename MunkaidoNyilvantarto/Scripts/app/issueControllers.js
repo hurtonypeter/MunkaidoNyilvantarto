@@ -3,10 +3,21 @@
     "use strict";
 
     angular.module('issueControllers')
-    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', '$window', function ($scope, $routeParams, $http, $window) {
+    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', '$window', 'AuthService', function ($scope, $routeParams, $http, $window, AuthService) {
         $scope.issueStates = $window.issueStates;
         
-
+        $scope.currentUser = AuthService.currentUser();
+        $scope.showEdit = function (userId) {
+            if ($scope.currentUser.userId == userId) {
+                return true;
+            }
+            else if ($scope.currentUser.userRole.indexOf('Manager') != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
 
         $http.get('/Issues/GetIssueDetails/' + $routeParams.issueId).then(function (resp) {
             if (resp.data.Succeeded) {

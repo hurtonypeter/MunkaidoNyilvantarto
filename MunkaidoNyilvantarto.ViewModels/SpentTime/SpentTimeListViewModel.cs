@@ -12,6 +12,8 @@ namespace MunkaidoNyilvantarto.ViewModels.SpentTime
 
         public string UserName { get; set; }
 
+        public string UserId { get; set; }
+
         /// <summary>
         /// Melyik nap dolgozott
         /// </summary>
