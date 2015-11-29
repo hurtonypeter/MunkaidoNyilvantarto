@@ -99,6 +99,18 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             return result;
         }
 
+        public async Task<List<SpentTimeDesktopListViewModel>> GetActualMonthSpentTimesByUser(string userId)
+        {
+            var now = DateTime.Now;
+            return (await context.SpentTimes
+                .Include(s => s.Issue)
+                .Include(s => s.Issue.Project)
+                .Where(s => s.User.Id == userId && s.Date.Year == now.Year && s.Date.Month == now.Month)
+                .ToListAsync())
+                .Select(s => mapper.Map<SpentTime, SpentTimeDesktopListViewModel>(s))
+                .ToList();
+        }
+
         public async Task<SpentTimeEditViewModel> GetSpentTiimeViewModel(int id)
         {
             var spentTime = await context.SpentTimes

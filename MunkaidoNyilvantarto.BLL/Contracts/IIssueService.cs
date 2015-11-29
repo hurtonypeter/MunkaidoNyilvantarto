@@ -16,5 +16,7 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<List<IssueListViewModel>> GetIssuesByProject(int projectId);
 
         Task<IssueEditViewModel> GetIssueEditViewModel(int id);
+
+        Task<List<IssueListViewModel>> GetIssuesByUser(string userId);
     }
 }

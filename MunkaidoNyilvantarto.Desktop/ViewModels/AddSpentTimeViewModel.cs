@@ -72,8 +72,21 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
         private async void Init()
         {
             SelectedDate = DateTime.Today;
-            Issues = await service.GetIssuesForUser();
+            Issues = await GetIssues();
             SelectedIssue = Issues.Any() ? Issues.First().Id : 0;
+        }
+
+        private async Task<ObservableCollection<IssueListViewModel>> GetIssues()
+        {
+            var result = await service.GetIssuesForUser();
+            if(result.Succeeded)
+            {
+                return new ObservableCollection<IssueListViewModel>(result.Data);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private ICommand _addTimeCommand;

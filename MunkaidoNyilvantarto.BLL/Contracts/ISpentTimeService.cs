@@ -18,5 +18,7 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<List<SpentTimeListViewModel>> GetSpentTimesByIssue(int issueId);
 
         Task<SpentTimeEditViewModel> GetSpentTiimeViewModel(int id);
+
+        Task<List<SpentTimeDesktopListViewModel>> GetActualMonthSpentTimesByUser(string userId);
     }
 }
