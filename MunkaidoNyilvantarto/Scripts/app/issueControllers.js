@@ -46,7 +46,8 @@
                         if (resp2.data.Succeeded) {
                             $scope.issue.SpentTimes = resp2.data.Data;
                             $scope.spentTimeModel = {
-                                IssueId: $routeParams.issueId
+                                IssueId: $routeParams.issueId,
+                                Date: new Date()
                             };
                         }
                     })
@@ -78,7 +79,6 @@
             IssueId: $routeParams.issueId
         };
         $scope.saveComment = function () {
-            console.log($scope.commentModel);
             $http.post('/Comments/Create', $scope.commentModel).then(function (resp) {
                 if (resp.data.Succeeded) {
                     $scope.issue.Comments.push(resp.data.Data);

@@ -63,9 +63,12 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
                     var comment = mapper.Map<Comment>(model);
                     comment.User = user;
                     comment.Issue = issue;
+                    comment.Created = DateTime.Now;
 
                     context.Comments.Add(comment);
                     await context.SaveChangesAsync();
+
+                    result.Data = mapper.Map<Comment, CommentListViewModel>(comment);
                 }
             }
             catch (Exception e)

@@ -32,7 +32,8 @@ namespace MunkaidoNyilvantarto.BLL
             this.CreateMap<Issue, IssueEditViewModel>()
                 .ForMember(dst => dst.ProjectId, o => o.MapFrom(src => src.Project.Id));
 
-            this.CreateMap<Issue, IssueListViewModel>();
+            this.CreateMap<Issue, IssueListViewModel>()
+                .ForMember(dest => dest.TotalHours, opt => opt.MapFrom(src => src.SpentTimes.Sum(s => s.Hour)));
 
             this.CreateMap<Issue, IssueDetailsViewModel>();
 

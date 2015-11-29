@@ -109,6 +109,7 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
         public async Task<List<IssueListViewModel>> GetIssuesByProject(int projectId)
         {
             return (await context.Issues
+                .Include(i => i.SpentTimes)
                 .Where(i => i.Project.Id == projectId)
                 .ToListAsync())
                 .Select(i => mapper.Map<IssueListViewModel>(i)).ToList();
