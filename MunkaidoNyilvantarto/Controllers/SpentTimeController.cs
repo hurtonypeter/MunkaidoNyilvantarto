@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace MunkaidoNyilvantarto.Controllers
 {
@@ -22,7 +23,7 @@ namespace MunkaidoNyilvantarto.Controllers
             if (model == null)
             {
                 return HttpNotFound();
-            }
+                }
             return Json(new ServiceResult
             {
                 Data = model
@@ -48,6 +49,29 @@ namespace MunkaidoNyilvantarto.Controllers
                 model.UserId = HttpContext.User.Identity.GetUserId();
                 return Json(await SpentTimeService.CreateSpentTime(model));
             }
+        }
+
+        [Authorize]
+        public async Task<ActionResult> GetActualMonthSpentTimesByUser()
+        {
+            var spentTimes = await SpentTimeService.GetActualMonthSpentTimesByUser(HttpContext.User.Identity.GetUserId());
+
+            return Json(new ServiceResult { Data = spentTimes });
+        }
+
+        public async Task<ActionResult> Create(SpentTimeEditViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                var ret = new ServiceResult();
+                AddModelErrorsToResult(ret);
+                return Json(ret);    
+            }
+
+            model.UserId = HttpContext.User.Identity.GetUserId();
+            var result = await SpentTimeService.CreateSpentTime(model);
+
+            return Json(result);
         }
     }
 }

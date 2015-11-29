@@ -114,6 +114,15 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
                 .Select(i => mapper.Map<IssueListViewModel>(i)).ToList();
         }
 
+        public async Task<List<IssueListViewModel>> GetIssuesByUser(string userId)
+        {
+            return (await context.Issues
+                .Where(i => i.Project.Workers.Any(w => w.Id == userId))
+                .ToListAsync())
+                .Select(i => mapper.Map<Issue, IssueListViewModel>(i))
+                .ToList();
+        }
+
         public async Task<IServiceResult> UpdateIssue(IssueEditViewModel model)
         {
             var result = new ServiceResult<IssueEditViewModel>();

@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\SpentTimeByProjectViewModel.cs" />
+    <Compile Include="Analytics\SpentTimeByUserViewModel.cs" />
     <Compile Include="Comment\CommentEditViewModel.cs" />
     <Compile Include="Comment\CommentListViewModel.cs" />
     <Compile Include="Issue\IssueDetailsViewModel.cs" />

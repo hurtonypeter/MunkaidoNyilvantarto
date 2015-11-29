@@ -48,12 +48,12 @@ namespace MunkaidoNyilvantarto.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Kötelező email címet megadni")]
         [Display(Name = "Email")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Rossz email formátum")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Kötelező jelszót megadni")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

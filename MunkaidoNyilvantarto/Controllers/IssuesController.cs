@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace MunkaidoNyilvantarto.Controllers
 {
@@ -61,6 +62,14 @@ namespace MunkaidoNyilvantarto.Controllers
         public async Task<ActionResult> ChangeState(int issueId, IssueState newState)
         {
             return Json(await IssueService.ChangeState(issueId, newState));
+        }
+
+        [Authorize]
+        public async Task<ActionResult> GetIssuesByUser()
+        {
+            var result = await IssueService.GetIssuesByUser(HttpContext.User.Identity.GetUserId());
+
+            return Json(new ServiceResult { Data = result });
         }
     }
 }

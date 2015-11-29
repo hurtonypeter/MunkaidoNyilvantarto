@@ -15,5 +15,7 @@ namespace MunkaidoNyilvantarto.ViewModels.SpentTime
         public DateTime Date { get; set; }
 
         public double Hour { get; set; }
+
+        public string Description { get; set; }
     }
 }

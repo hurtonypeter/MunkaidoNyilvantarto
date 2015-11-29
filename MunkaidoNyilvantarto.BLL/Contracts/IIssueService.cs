@@ -18,6 +18,8 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
 
         Task<IssueEditViewModel> GetIssueEditViewModel(int id);
 
+        Task<List<IssueListViewModel>> GetIssuesByUser(string userId);
+
         Task<IssueDetailsViewModel> GetIssueDetails(int id);
 
         Task<ServiceResult> ChangeState(int issueId, IssueState newState);

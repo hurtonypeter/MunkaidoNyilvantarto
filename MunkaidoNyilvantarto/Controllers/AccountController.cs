@@ -113,7 +113,7 @@ namespace MunkaidoNyilvantarto.Controllers
 
             if (!ModelState.IsValid)
             {
-                ret.AddError("", "Hibás bejelentkezési adatok");
+                AddModelErrorsToResult(ret);
                 return Json(ret);
             }
             

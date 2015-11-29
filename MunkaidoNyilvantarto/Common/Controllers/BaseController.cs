@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MunkaidoNyilvantarto.BLL.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,17 @@ namespace MunkaidoNyilvantarto.Common.Controllers
         protected internal new JsonResult Json(Object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
         {
             return new JsonNetResult() { Data = data, ContentType = contentType, ContentEncoding = contentEncoding, JsonRequestBehavior = behavior };
+        }
+
+        protected void AddModelErrorsToResult(IServiceResult result)
+        {
+            foreach (var item in ModelState)
+            {
+                foreach (var error in item.Value.Errors)
+                {
+                    result.AddError(item.Key, error.ErrorMessage);
+                }
+            }
         }
     }
 }

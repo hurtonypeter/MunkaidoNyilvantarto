@@ -55,6 +55,10 @@ namespace MunkaidoNyilvantarto.BLL
                 .ForMember(dst => dst.UserName, o => o.MapFrom(src => src.User.UserName))
                 .ForMember(dst => dst.UserId, o => o.MapFrom(src => src.User.Id));
 
+            this.CreateMap<SpentTime, SpentTimeDesktopListViewModel>()
+                .ForMember(dst => dst.IssueName, o => o.MapFrom(src => src.Issue.Title))
+                .ForMember(dst => dst.ProjectName, o => o.MapFrom(src => src.Issue.Project.Name));
+
         }
     }
 }

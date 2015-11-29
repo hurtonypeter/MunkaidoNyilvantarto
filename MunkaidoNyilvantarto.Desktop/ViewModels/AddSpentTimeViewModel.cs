@@ -72,8 +72,21 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
         private async void Init()
         {
             SelectedDate = DateTime.Today;
-            Issues = await service.GetIssuesForUser();
+            Issues = await GetIssues();
             SelectedIssue = Issues.Any() ? Issues.First().Id : 0;
+        }
+
+        private async Task<ObservableCollection<IssueListViewModel>> GetIssues()
+        {
+            var result = await service.GetIssuesForUser();
+            if(result.Succeeded)
+            {
+                return new ObservableCollection<IssueListViewModel>(result.Data);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private ICommand _addTimeCommand;
@@ -91,9 +104,28 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
             }
         }
 
-        private void AddTime(object o)
+        private async void AddTime(object o)
         {
+            IsProgressing = true;
 
+            try
+            {
+                var result = await service.AddSpentTime(SelectedIssue, SelectedDate, Hour, Description);
+                if(result.Succeeded)
+                {
+                    currentWindow.Close();
+                }
+                else
+                {
+                    ErrorMessage = string.Join("\n", result.Errors.Select(e => e.Value));
+                }
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Hiba történt a feldolgozás során";
+            }
+
+            IsProgressing = false;
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = "")
