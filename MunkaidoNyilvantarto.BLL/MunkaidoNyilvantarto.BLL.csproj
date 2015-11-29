@@ -102,6 +102,7 @@
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\EmailService.cs" />
+    <Compile Include="Implementation\AnalyticsService.cs" />
     <Compile Include="Implementation\AuthorizeService.cs" />
     <Compile Include="Implementation\CommentService.cs" />
     <Compile Include="Implementation\IssueService.cs" />
