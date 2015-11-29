@@ -34,6 +34,8 @@ namespace MunkaidoNyilvantarto.BLL
 
             this.CreateMap<Issue, IssueListViewModel>();
 
+            this.CreateMap<Issue, IssueDetailsViewModel>();
+
             //Project
             this.CreateMap<ProjectEditViewModel, Project>();
             this.CreateMap<Project, ProjectEditViewModel>()
@@ -50,7 +52,8 @@ namespace MunkaidoNyilvantarto.BLL
                 .ForMember(dst => dst.UserId, o => o.MapFrom(src => src.User.Id));
 
             this.CreateMap<SpentTime, SpentTimeListViewModel>()
-                .ForMember(dst => dst.UserName, o => o.MapFrom(src => src.User.UserName));
+                .ForMember(dst => dst.UserName, o => o.MapFrom(src => src.User.UserName))
+                .ForMember(dst => dst.UserId, o => o.MapFrom(src => src.User.Id));
 
         }
     }

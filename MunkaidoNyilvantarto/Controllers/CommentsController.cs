@@ -1,4 +1,6 @@
-﻿using MunkaidoNyilvantarto.BLL;
+﻿using Microsoft.AspNet.Identity;
+using MunkaidoNyilvantarto.BLL;
+using MunkaidoNyilvantarto.BLL.Contracts;
 using MunkaidoNyilvantarto.Common.Controllers;
 using MunkaidoNyilvantarto.ViewModels.Comment;
 using System;
@@ -12,13 +14,12 @@ namespace MunkaidoNyilvantarto.Controllers
 {
     public class CommentsController : BaseController
     {
+        public ICommentService CommentService { get; set; }
 
         public async Task<ActionResult> Create(CommentEditViewModel model)
         {
-            return Json(new ServiceResult
-            {
-                Data = new CommentListViewModel { Id = 3, Title = model.Title, Body = model.Body, UserName = "Oké Olivér", Created = DateTime.Now }
-            });
+            model.UserId = HttpContext.User.Identity.GetUserId();
+            return Json(await CommentService.CreateComment(model));
         }
 
         

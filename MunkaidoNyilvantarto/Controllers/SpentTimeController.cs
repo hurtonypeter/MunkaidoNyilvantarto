@@ -1,4 +1,6 @@
-﻿using MunkaidoNyilvantarto.BLL;
+﻿using Microsoft.AspNet.Identity;
+using MunkaidoNyilvantarto.BLL;
+using MunkaidoNyilvantarto.BLL.Contracts;
 using MunkaidoNyilvantarto.Common.Controllers;
 using MunkaidoNyilvantarto.ViewModels.SpentTime;
 using System;
@@ -12,19 +14,18 @@ namespace MunkaidoNyilvantarto.Controllers
 {
     public class SpentTimeController : BaseController
     {
+        public ISpentTimeService SpentTimeService { get; set; }
+
         public async Task<ActionResult> GetSpentTimeEditViewModel(int id)
         {
+            var model = await SpentTimeService.GetSpentTiimeViewModel(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
             return Json(new ServiceResult
             {
-                Data = new SpentTimeEditViewModel
-                {
-                    Id = 1,
-                    IssueId = 3,
-                    UserId = Guid.NewGuid().ToString(),
-                    Date = DateTime.Now,
-                    Hour = 8.0,
-                    Description = "nagyon dolgoztam a formon"
-                }
+                Data = model
             });
         }
 
@@ -32,21 +33,21 @@ namespace MunkaidoNyilvantarto.Controllers
         {
             return Json(new ServiceResult
             {
-                Data = new List<SpentTimeListViewModel>
-                {
-                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel", Date = DateTime.Now, Hour = 6.5 },
-                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel 2", Date = DateTime.Now, Hour = 2.5 },
-                    new SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel 2", Date = DateTime.Now, Hour = 3.5 }
-                }
+                Data = await SpentTimeService.GetSpentTimesByIssue(id)
             });
         }
 
         public async Task<ActionResult> Save(SpentTimeEditViewModel model)
         {
-            return Json(new ServiceResult
+            if (model.Id.HasValue)
             {
-
-            });
+                return Json(await SpentTimeService.UpdateSpentTime(model));
+            }
+            else
+            {
+                model.UserId = HttpContext.User.Identity.GetUserId();
+                return Json(await SpentTimeService.CreateSpentTime(model));
+            }
         }
     }
 }

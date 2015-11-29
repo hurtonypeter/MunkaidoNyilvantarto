@@ -3,7 +3,9 @@
     "use strict";
 
     angular.module('issueControllers')
-    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', '$window', 'AuthService', function ($scope, $routeParams, $http, $window, AuthService) {
+    .controller('issueDetailsCtrl', ['$scope', '$routeParams', '$http', '$window', 'AuthService', 'alertService',
+        function ($scope, $routeParams, $http, $window, AuthService, alertService) {
+
         $scope.issueStates = $window.issueStates;
         
         $scope.currentUser = AuthService.currentUser();
@@ -28,6 +30,9 @@
                     }
                 });
             }
+            else {
+                alertService.pushErrors(resp.data.Errors);
+            }
         });
 
         $scope.spentTimeModel = {
@@ -46,6 +51,9 @@
                         }
                     })
                 }
+                else {
+                    alertService.pushErrors(resp.data.Errors);
+                }
             });
         };
         $scope.editSpentTime = function (id) {
@@ -53,6 +61,9 @@
                 if (resp.data.Succeeded) {
                     resp.data.Data.Date = new Date(resp.data.Data.Date);
                     $scope.spentTimeModel = resp.data.Data;
+                }
+                else {
+                    alertService.pushErrors(resp.data.Errors);
                 }
             })
         };
@@ -75,11 +86,16 @@
                         IssueId: $routeParams.issueId
                     };
                 }
+                else {
+                    alertService.pushErrors(resp.data.Errors);
+                }
             });
         };
         
     }])
-    .controller('issueCreateCtrl', ['$scope', '$http', '$routeParams', '$location', function ($scope, $http, $routeParams, $location) {
+    .controller('issueCreateCtrl', ['$scope', '$http', '$routeParams', '$location', 'alertService',
+        function ($scope, $http, $routeParams, $location, alertService) {
+
         $scope.model = {
             ProjectId: $routeParams.projectId
         };
@@ -89,6 +105,9 @@
             $http.post('/Issues/CreateIssue', $scope.model).then(function (resp) {
                 if (resp.data.Succeeded) {
                     $location.path('/projects/details/' + $routeParams.projectId);
+                }
+                else {
+                    alertService.pushErrors(resp.data.Errors);
                 }
             });
         };

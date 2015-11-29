@@ -1,4 +1,5 @@
-﻿using MunkaidoNyilvantarto.ViewModels.Issue;
+﻿using MunkaidoNyilvantarto.Data.Entity;
+using MunkaidoNyilvantarto.ViewModels.Issue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,9 @@ namespace MunkaidoNyilvantarto.BLL.Contracts
         Task<List<IssueListViewModel>> GetIssuesByProject(int projectId);
 
         Task<IssueEditViewModel> GetIssueEditViewModel(int id);
+
+        Task<IssueDetailsViewModel> GetIssueDetails(int id);
+
+        Task<ServiceResult> ChangeState(int issueId, IssueState newState);
     }
 }

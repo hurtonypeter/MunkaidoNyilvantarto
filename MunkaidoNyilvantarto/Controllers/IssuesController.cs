@@ -21,64 +21,46 @@ namespace MunkaidoNyilvantarto.Controllers
         {
             return Json(new ServiceResult
             {
-                Data = new List<IssueListViewModel>
-                {
-                    new IssueListViewModel { Id = 1, Description = "descrip", Title = "javítani ezt meg ezt", State = Data.Entity.IssueState.Inprogress, TotalHours = 34.2 },
-                    new IssueListViewModel { Id = 1, Description = "descrip", Title = "javítani ezt meg ezt", State = Data.Entity.IssueState.New, TotalHours = 34.2 },
-                    new IssueListViewModel { Id = 1, Description = "descrip", Title = "javítani ezt meg ezt", State = Data.Entity.IssueState.Testing, TotalHours = 34.2 }
-                }
+                Data = await IssueService.GetIssuesByProject(id)
             });
         }
 
         public async Task<ActionResult> GetIssueDetails(int id)
         {
+            var model = await IssueService.GetIssueDetails(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
             return Json(new ServiceResult
             {
-                Data = new IssueDetailsViewModel
-                {
-                    Id = 1,
-                    ProjectId = 2,
-                    Title = "issue title",
-                    Description = "issue description",
-                    State = Data.Entity.IssueState.Ready,
-                    Comments = new List<ViewModels.Comment.CommentListViewModel>
-                    {
-                        new ViewModels.Comment.CommentListViewModel { Id = 1, Title = "szép munka!", Body = "nagyon jól meglettek ezek", UserName = "Nagyonfelelős Norbert", Created = DateTime.Now }
-                    },
-                    SpentTimes = new List<ViewModels.SpentTime.SpentTimeListViewModel>
-                    {
-                        new ViewModels.SpentTime.SpentTimeListViewModel { Id = 1, UserName = "Dolgozó Dániel", Date = DateTime.Now, Hour = 6.5 }
-                    }
-                }
+                Data = model
             });
         }
 
         public async Task<ActionResult> GetIssueEditViewModel(int id)
         {
+            var model = await IssueService.GetIssueEditViewModel(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
             return Json(new ServiceResult
             {
-                Data = new IssueEditViewModel
-                {
-                    Id = id,
-                    ProjectId = 3
-                }
+                Data = model
             });
         }
 
         public async Task<ActionResult> CreateIssue(IssueEditViewModel model)
         {
-            return Json(new ServiceResult
-            {
-
-            });
+            return Json(await IssueService.CreateIssue(model));
         }
 
         public async Task<ActionResult> ChangeState(int issueId, IssueState newState)
         {
-            return Json(new ServiceResult
-            {
-
-            });
+            return Json(await IssueService.ChangeState(issueId, newState));
         }
     }
 }

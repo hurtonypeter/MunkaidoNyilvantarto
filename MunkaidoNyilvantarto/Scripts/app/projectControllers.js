@@ -8,6 +8,9 @@
             if (resp.data.Succeeded) {
                 $scope.projects = resp.data.Data;
             }
+            else {
+                alertService.pushErrors(resp.data.Errors);
+            }
         });
     }])
     .controller('projectCreateCtrl', ['$http', 'alertService', '$scope', '$location', function ($http, alertService, $scope, $location) {
@@ -15,6 +18,9 @@
             $http.post('/Projects/Create', $scope.model).then(function (resp) {
                 if (resp.data.Succeeded) {
                     $location.path('/projects');
+                }
+                else {
+                    alertService.pushErrors(resp.data.Errors);
                 }
             });
         };
@@ -24,11 +30,17 @@
             if (resp.data.Succeeded) {
                 $scope.project = resp.data.Data;
             }
+            else {
+                alertService.pushErrors(resp.data.Errors);
+            }
         })
 
         $http.get('/Issues/GetIssuesByProject/' + $routeParams.projectId).then(function (resp) {
             if (resp.data.Succeeded) {
                 $scope.issues = resp.data.Data;
+            }
+            else {
+                alertService.pushErrors(resp.data.Errors);
             }
         });
 

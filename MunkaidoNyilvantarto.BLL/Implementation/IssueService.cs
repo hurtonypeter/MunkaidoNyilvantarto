@@ -32,6 +32,32 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             this.mapper = mapper;
         }
 
+        public async Task<ServiceResult> ChangeState(int issueId, IssueState newState)
+        {
+            var result = new ServiceResult();
+
+            try
+            {
+                //franc se tudja miért, de ha nincs ráincludeolva a project, elszáll a required miatt...
+                var issue = await context.Issues.Include(i => i.Project).SingleOrDefaultAsync(i => i.Id == issueId);
+                if (issue == null)
+                {
+                    result.AddError("", "Nincs ilyen azonosítójú feladat.");
+                    return result;
+                }
+
+                issue.State = newState;
+                await context.SaveChangesAsync();
+
+            }
+            catch (Exception e)
+            {
+                result.AddError("", e.Message);
+            }
+
+            return result;
+        }
+
         public async Task<IServiceResult> CreateIssue(IssueEditViewModel model)
         {
             var result = new ServiceResult<IssueEditViewModel>();
@@ -61,6 +87,16 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
             return result;
         }
 
+        public async Task<IssueDetailsViewModel> GetIssueDetails(int id)
+        {
+            var issue = await context.Issues
+                .Include(i => i.Comments)
+                .Include("SpentTimes.User")
+                .SingleOrDefaultAsync(i => i.Id == id);
+
+            return issue == null ? null : mapper.Map<Issue, IssueDetailsViewModel>(issue);
+        }
+
         public async Task<IssueEditViewModel> GetIssueEditViewModel(int id)
         {
             var issue = await context.Issues
@@ -72,10 +108,10 @@ namespace MunkaidoNyilvantarto.BLL.Implementation
 
         public async Task<List<IssueListViewModel>> GetIssuesByProject(int projectId)
         {
-            return await context.Issues
+            return (await context.Issues
                 .Where(i => i.Project.Id == projectId)
-                .Select(i => mapper.Map<IssueListViewModel>(i))
-                .ToListAsync();
+                .ToListAsync())
+                .Select(i => mapper.Map<IssueListViewModel>(i)).ToList();
         }
 
         public async Task<IServiceResult> UpdateIssue(IssueEditViewModel model)

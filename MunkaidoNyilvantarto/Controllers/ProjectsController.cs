@@ -1,4 +1,5 @@
-﻿using MunkaidoNyilvantarto.BLL;
+﻿using Microsoft.AspNet.Identity;
+using MunkaidoNyilvantarto.BLL;
 using MunkaidoNyilvantarto.BLL.Contracts;
 using MunkaidoNyilvantarto.Common.Controllers;
 using MunkaidoNyilvantarto.ViewModels.Project;
@@ -37,10 +38,8 @@ namespace MunkaidoNyilvantarto.Controllers
 
         public async Task<ActionResult> Create(ProjectEditViewModel model)
         {
-            return Json(new ServiceResult
-            {
-
-            });
+            model.ResponsibleUserId = HttpContext.User.Identity.GetUserId();
+            return Json(await ProjectService.CreateProject(model));
         }
     }
 }

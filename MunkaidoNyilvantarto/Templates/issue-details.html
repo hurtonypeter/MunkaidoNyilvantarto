@@ -22,6 +22,9 @@
         </tr>
     </thead>
     <tbody>
+        <tr ng-if="issue.SpentTimes.length == 0">
+            <td colspan="5">Nincs bejegyzett idő.</td>
+        </tr>
         <tr ng-repeat="time in issue.SpentTimes">
             <td>{{time.UserName}}</td>
             <td>{{time.Date | date : 'yyyy. M. dd.'}}</td>
@@ -52,7 +55,7 @@
 </form>
 
 <h3>Megjegyzések</h3>
-
+<p ng-if="issue.Comments.length == 0">Nincs egy hozzászólás sem.</p>
 <div class="panel panel-default" ng-repeat="comment in issue.Comments">
     <div class="panel-heading">
         <h3 class="panel-title">{{comment.Title}} <small>- {{comment.UserName}}</small>
