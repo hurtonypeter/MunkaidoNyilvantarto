@@ -14,7 +14,7 @@ namespace MunkaidoNyilvantarto.Controllers
     {
         public IAnalyticsService AnalyticsService { get; set; }
 
-        public async Task<ActionResult> GeGetAllSpentTimeByProjecttP()
+        public async Task<ActionResult> GetAllSpentTimeByProject()
         {
             return Json(new ServiceResult { Data = await AnalyticsService.GetAllSpentTimeByProject() });
         }
