@@ -73,5 +73,10 @@ namespace MunkaidoNyilvantarto.Controllers
 
             return Json(result);
         }
+
+        public async Task<ActionResult> DeleteSpentTime(int id)
+        {
+            return Json(await SpentTimeService.DeleteSpentTime(id));
+        }
     }
 }

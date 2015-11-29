@@ -30,7 +30,19 @@
             <td>{{time.Date | date : 'yyyy. M. dd.'}}</td>
             <td>{{time.Hour}}</td>
             <td>{{time.Description}}</td>
-            <td><button type="button" ng-if="showEdit(time.UserId)" ng-click="editSpentTime(time.Id)" class="btn btn-xs btn-default">Szerkesztés</button></td>
+            <td>
+                <button type="button" 
+                        ng-if="showEdit(time.UserId)" 
+                        ng-click="editSpentTime(time.Id)" 
+                        class="btn btn-xs btn-default">
+                    Szerkesztés
+                </button>
+                <button type="button"
+                        ng-click="deleteSpentTime(time.Id)"
+                        class="btn btn-xs btn-default">
+                    Törlés
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
