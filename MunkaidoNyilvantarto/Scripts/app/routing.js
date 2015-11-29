@@ -49,13 +49,13 @@
                     roles: [USER_ROLES.manager, USER_ROLES.worker]
                 }
             }).
+            when('/Analytics/GetAllSpentTimeByProject', {
+                templateUrl: '/Templates/analitycs-allspenttime.html',
+                controller: 'allSpentTimeCtrl'
+            }).
             when('/login', {
                 templateUrl: '/Templates/login.html',
                 controller: 'loginCtrl'
-            }).
-            when('/Analytics/GetAllSpentTimeByProject', {
-                templateUrl: '/Templates/login.html',
-                controller: 'allSpentTimeCtrl'
             }).
             when('/error/403', {
                 templateUrl: '/Templates/permissiondenied.html'

@@ -241,7 +241,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\analyticsControllers.js" />
+    <Content Include="Scripts\app\xanalyticsControllers.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\issueControllers.js" />
     <Content Include="Scripts\app\projectControllers.js" />
