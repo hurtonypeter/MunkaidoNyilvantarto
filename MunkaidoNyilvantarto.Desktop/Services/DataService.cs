@@ -28,7 +28,7 @@ namespace MunkaidoNyilvantarto.Desktop.Services
         {
             var client = ClientManager.GetClient();
 
-            var response = await client.DownloadStringTaskAsync(new Uri("http://localhost:2179/Issue/GetIssuesByUser"));
+            var response = await client.DownloadStringTaskAsync(new Uri("http://localhost:2179/Issues/GetIssuesByUser"));
             var result = JsonConvert.DeserializeObject<ServiceResult<List<IssueListViewModel>>>(response);
 
             return result;

@@ -53,7 +53,7 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
 
         public WorkerViewModel()
         {
-            RefresTable(new object());
+            RefreshTable(null);
         }
 
         private ICommand _addTimeCommand;
@@ -74,7 +74,13 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
         private void AddTime(object o)
         {
             var window = new AddSpentTimeWindow();
+            window.Closed += Window_Closed;
             window.Show();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            RefreshTable(null);
         }
 
         private ICommand _refereshTableCommand;
@@ -85,15 +91,17 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
             {
                 if(_refereshTableCommand == null)
                 {
-                    _refereshTableCommand = new RelayCommand(RefresTable);
+                    _refereshTableCommand = new RelayCommand(RefreshTable);
                 }
 
                 return _refereshTableCommand;
             }
         }
 
-        private async void RefresTable(object o)
+        private async void RefreshTable(object o)
         {
+            IsProgressing = true;
+
             try
             {
                 var result = await service.GetSpentTimesForUser();
@@ -110,6 +118,8 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
             {
                 ErrorMessage = "Hiba történt az adatok lekérése közben";
             }
+
+            IsProgressing = false;
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = "")

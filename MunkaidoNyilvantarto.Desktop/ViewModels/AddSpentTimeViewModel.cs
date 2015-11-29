@@ -104,9 +104,28 @@ namespace MunkaidoNyilvantarto.Desktop.ViewModels
             }
         }
 
-        private void AddTime(object o)
+        private async void AddTime(object o)
         {
+            IsProgressing = true;
 
+            try
+            {
+                var result = await service.AddSpentTime(SelectedIssue, SelectedDate, Hour, Description);
+                if(result.Succeeded)
+                {
+                    currentWindow.Close();
+                }
+                else
+                {
+                    ErrorMessage = string.Join("\n", result.Errors.Select(e => e.Value));
+                }
+            }
+            catch (Exception)
+            {
+                ErrorMessage = "Hiba történt a feldolgozás során";
+            }
+
+            IsProgressing = false;
         }
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = "")
