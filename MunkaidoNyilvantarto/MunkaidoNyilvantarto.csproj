@@ -192,6 +192,7 @@
     <Compile Include="Common\ErrorHandling\JsonHandleErrorAttribute.cs" />
     <Compile Include="Common\ProjectAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssuesController.cs" />
@@ -240,6 +241,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\analyticsControllers.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\issueControllers.js" />
     <Content Include="Scripts\app\projectControllers.js" />
@@ -1024,6 +1026,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Templates\analitycs-allspenttime.html" />
     <Content Include="Templates\issue-details.html" />
     <Content Include="Templates\issue-edit.html" />
     <Content Include="Templates\login.html" />
@@ -1069,6 +1072,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Analytics\" />
     <Folder Include="Views\Projects\" />
   </ItemGroup>
   <ItemGroup>

@@ -53,6 +53,10 @@
                 templateUrl: '/Templates/login.html',
                 controller: 'loginCtrl'
             }).
+            when('/Analytics/GetAllSpentTimeByProject', {
+                templateUrl: '/Templates/login.html',
+                controller: 'allSpentTimeCtrl'
+            }).
             when('/error/403', {
                 templateUrl: '/Templates/permissiondenied.html'
             }).

@@ -9,6 +9,7 @@
     angular.module('userControllers', []);
     angular.module('projectControllers', []);
     angular.module('issueControllers', []);
+    angular.module('analyticsControllers', []);
 
     angular.module('munkaidoNyilvantarto')
     .config(['$httpProvider', function ($httpProvider) {
