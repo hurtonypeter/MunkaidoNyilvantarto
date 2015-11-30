@@ -1027,6 +1027,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Templates\analitycs-allspenttime.html" />
+    <Content Include="Templates\analytics-projectspenttimes.html" />
     <Content Include="Templates\issue-details.html" />
     <Content Include="Templates\issue-edit.html" />
     <Content Include="Templates\login.html" />

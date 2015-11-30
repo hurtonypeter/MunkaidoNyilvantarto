@@ -1,0 +1,10 @@
+﻿<h3>Adott projektben elköltött idő feladatonként</h3>
+
+<select ng-model="$parent.selectedProject" ng-repeat="p in projects" class="form-control" ng-change="loadAnalytics()">
+    <option value="{{p.Id}}">{{p.Name}}</option>
+</select>
+
+<dl style="margin-top: 20px;" class="dl-horizontal" ng-repeat="s in spentTimes">
+    <dt>{{s.IssueTitle}}:</dt>
+    <dd>{{s.Hours}} óra</dd>
+</dl>

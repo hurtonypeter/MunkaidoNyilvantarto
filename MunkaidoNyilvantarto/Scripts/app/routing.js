@@ -53,6 +53,10 @@
                 templateUrl: '/Templates/analitycs-allspenttime.html',
                 controller: 'allSpentTimeCtrl'
             }).
+            when('/Analytics/ProjectSpentTimesByIssues', {
+                templateUrl: '/Templates/analytics-projectspenttimes.html',
+                controller: 'projectSpentTimeCtrl'
+            }).
             when('/login', {
                 templateUrl: '/Templates/login.html',
                 controller: 'loginCtrl'
