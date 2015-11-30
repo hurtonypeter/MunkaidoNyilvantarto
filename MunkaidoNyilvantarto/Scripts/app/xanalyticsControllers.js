@@ -27,7 +27,7 @@
             });
 
             $scope.loadAnalytics = function() {
-                $http.get('/Analytics/GetProjectSpentTimeByIssue?projectId=' + $scope.selectedProject.toString()).then(function (resp) {
+                $http.get('/Analytics/GetProjectSpentTimeByIssue?projectId=' + $scope.selectedProject).then(function (resp) {
                     if (resp.data.Succeeded) {
                         $scope.spentTimes = resp.data.Data.SpentTimes
                     }
